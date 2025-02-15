@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .main-main-desktop{
+            width:400px;
+            height:600px;
+            background-color:rgb(68, 46, 215);
+            border-radius:50px;
+            margin:100px;
+            position:absolute;
+        }
+        h1{
+            font-size:100px;
+            font-family:Impact,Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-align:center;
+            margin:160px;
+            background-color:rgb(98, 76, 243);
+            transition:1s;
+            border-width:200px;
+            border-radius:200px;
+        }
+        div{
+            background-color:rgb(80, 58, 222);
+            border-radius:800px;
+            border-width:200px;
+            border-radius:200px;
+            position:fixed;
+            text-align:center;
+            transition:1s;
+        }
+        h1:hover{
+            transform: scale(1.5);
+        }
+    </style>
+    
+    <main class="main-main-desktop">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div>
+            <h1>
+                79
+            </h1>
+        </div>
+    </main>
+
+</body>
+</html>

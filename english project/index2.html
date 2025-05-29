@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gopher Fun Zone</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8d68b;
+      color: #333;
+      padding: 0;
+      margin: 0;
+    }
+    header {
+      background-color: #ffcc66;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+    }
+    nav {
+      text-align: center;
+      margin-top: 20px;
+    }
+    nav a {
+      margin: 0 15px;
+      color: #333;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .game-container {
+      text-align: center;
+      margin-top: 20px;
+      background-color:#d98e45;
+      border-radius:50px;
+      width:500px;
+      height:500px;
+      margin-left:420px;
+      border-style:ridge;
+      border-width:20px;
+      border-color:#4f2a00;
+    }
+    #game-board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-gap: 20px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    .hole {
+      width: 100px;
+      height: 100px;
+      background-color: #8b4513;
+      border-radius: 50%;
+      position: relative;
+    }
+    .gopher {
+      width: 80px;
+      height: 80px;
+      background-image: url('https://t4.ftcdn.net/jpg/00/29/45/85/360_F_29458531_Yv6F2m0cvKcy0ISSjSQoGkIt2TIiuLqI.jpg');
+      background-size: cover;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+      display: none;
+    }
+    img{
+        size:20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #e6a35c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #d98e45;
+    }
+    .scoreboard {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    .gopher-fact {
+      background-color: #fff;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      margin:50px;
+    }
+    .about-section {
+      margin-top: 40px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    .about-section h2 {
+      font-size: 2rem;
+      color: #e6a35c;
+    }
+    .about-section p {
+      font-size: 1.1rem;
+    }
+    .extra-info {
+      margin-top: 40px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    .extra-info h2 {
+      font-size: 2rem;
+      color: #e6a35c;
+    }
+    .extra-info p {
+      font-size: 1.1rem;
+    }
+    footer {
+      background-color: #ffcc66;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    .h22{
+        text-align:center;
+        margin:50px;
+        font-family:cursive;
+        font-size:70px;
+    }
+    .funfacts1{
+        text-align:center;
+        font-family:cursive;
+        font-size:70px;
+    }
+    .funfacts1:hover{
+        transform:translate(2);
+    }
+    .funfacts1{
+        transition:1s;
+    }
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .photo-gallery img {
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+    .photo-gallery img:hover {
+      transform: scale(1.05);
+    }
+    .photo-lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    .photo-lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 8px;
+    }
+    .photo-lightbox:target {
+      display: flex;
+    }
+
+    /* Quiz Section */
+    .quiz-section {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    .quiz-section h2 {
+      font-size: 2rem;
+      color: #e6a35c;
+    }
+    .quiz-question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .quiz-options {
+      margin-top: 10px;
+    }
+    .quiz-options input {
+      margin-right: 10px;
+      font-size: 1.1rem;
+    }
+    .quiz-button {
+      margin-top: 20px;
+      background-color: #e6a35c;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .quiz-button:hover {
+      background-color: #d98e45;
+    }
+    .quiz-result {
+      font-size: 1.2rem;
+      margin-top: 20px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the <i>Gopher Fun Zone!</i></h1>
+    <nav>
+      <a href="#facts">Fun Facts</a>
+      <a href="#minigames">Mini-Games</a>
+      <a href="#about">About Gophers</a>
+      <a href="#extra-info">More Gopher Info</a>
+    </nav>
+  </header>
+
+  <section id="facts">
+    <h2 class="funfacts1">Fun Facts About Gophers!</h2>
+    <div class="gopher-fact">
+      <h3>1. Gophers Are Great Diggers</h3>
+      <p>Gophers are fantastic at digging! They can make tunnels up to 200 feet long, and they often have multiple tunnels in their burrow system.</p>
+    </div>
+    <div class="gopher-fact">
+      <h3>2. They Use Their Teeth to Dig</h3>
+      <p>Gophers don't just dig with their claws. They also use their sharp front teeth to gnaw through dirt and roots. These teeth grow all their lives!</p>
+    </div>
+    <div class="gopher-fact">
+      <h3>3. Gophers Are Very Shy</h3>
+      <p>Gophers are solitary animals. They live alone and only come out of their burrows at night or in the early morning to forage for food.</p>
+    </div>
+    <div class="gopher-fact">
+      <h3>4. They Eat Plants and Roots</h3>
+      <p>Gophers are herbivores. They love to eat plants, roots, and even tree bark. Their strong teeth help them chew through tough roots and vegetables.</p>
+    </div>
+    <div class="gopher-fact">
+      <h3>5. Gophers Have Special Pouches in Their Cheeks</h3>
+      <p>Just like hamsters, gophers have cheek pouches to store food! They can fill these pouches with food to take back to their burrow and eat later.</p>
+    </div>
+  </section>
+
+  <section id="minigames">
+    <h2 class="h22">
+        lets have some fun, and
+        Play some <u>Whack-a-Gopher!</u></h2>
+    <div class="game-container">
+        <br>
+        <br>
+      <div id="game-board">
+        <div class="hole"><div class="gopher"></div></div>
+        <div class="hole"><div class="gopher"></div></div>
+        <div class="hole"><div class="gopher"></div></div>
+        <div class="hole"><div class="gopher"></div></div>
+        <div class="hole"><div class="gopher"></div></div>
+        <div class="hole"><div class="gopher"></div></div>
+      </div>
+      <button onclick="startGame()">Start Game</button>
+      <div class="scoreboard">
+        <p>Score: <span id="score">0</span></p>
+        <p>Time Left: <span id="time">30</span> seconds</p>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="h22">what else is there about <u>gophers?</u></h2>
+  <section id="about">
+    <div class="about-section">
+      <h2>About Gophers</h2>
+      <p>Gophers are small rodents that live underground. They dig complex burrow systems where they sleep, store food, and avoid predators. Gophers are known for their digging ability, strong teeth, and cheek pouches for storing food.</p>
+      <p>Although they can be a nuisance for gardeners because they often eat plant roots, they are vital to the ecosystem. Their tunnels aerate the soil, which helps plants grow better.</p>
+    </div>
+  </section>
+
+  <section id="extra-info">
+    <div class="extra-info">
+      <h2>More Gopher Information</h2>
+      <p>Gophers are found in North America and are part of the family Geomyidae. They live in a wide range of environments, from forests to grasslands. Gophers are not just cute—they play a significant role in the environment by enriching the soil.</p>
+      <p>Gophers are nocturnal, meaning they are mostly active at night. They are also known for their ability to create underground tunnels that help with water drainage and root growth.</p>
+    </div>
+  </section>
+</section>
+
+<!-- Photo Gallery Section -->
+<section id="gallery">
+  <h2>Gopher Photo Gallery</h2>
+  <div class="photo-gallery">
+    <a href="#img1"><img src="https://newmexicopestcontrol.com/wp-content/uploads/2023/08/pocket-gopher.png" alt="Gopher 1"></a>
+    <a href="#img2"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9i24goyqbNkpTyzz373vomEXG0HLfi4D3BQ&s" alt="Gopher 2"></a>
+    <a href="#img3"><img src="https://hips.hearstapps.com/hmg-prod/images/pocket-gopher-royalty-free-image-1731432526.jpg?crop=0.88933xw:1xh;center,top&resize=1200:*" alt="Gopher 3"></a>
+    <a href="#img4"><img src="https://cdn.theatlantic.com/thumbor/wln78MhZXytfIgKowH3WCIHr69E=/0x0:2400x1350/960x540/media/img/mt/2022/07/Gopher_Farmers/original.jpg" alt="Gopher 4"></a>
+  </div>
+
+  <!-- Photo Lightbox -->
+  <div class="photo-lightbox" id="img1">
+    <img src="https://newmexicopestcontrol.com/wp-content/uploads/2023/08/pocket-gopher.png" alt="Gopher 1">
+    <a href="#gallery">Close</a>
+  </div>
+  <div class="photo-lightbox" id="img2">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9i24goyqbNkpTyzz373vomEXG0HLfi4D3BQ&s" alt="Gopher 2">
+    <a href="#gallery">Close</a>
+  </div>
+  <div class="photo-lightbox" id="img3">
+    <img src="https://hips.hearstapps.com/hmg-prod/images/pocket-gopher-royalty-free-image-1731432526.jpg?crop=0.88933xw:1xh;center,top&resize=1200:*" alt="Gopher 3">
+    <a href="#gallery">Close</a>
+  </div>
+  <div class="photo-lightbox" id="img4">
+    <img src="https://cdn.theatlantic.com/thumbor/wln78MhZXytfIgKowH3WCIHr69E=/0x0:2400x1350/960x540/media/img/mt/2022/07/Gopher_Farmers/original.jpg" alt="Gopher 4">
+    <a href="#gallery">Close</a>
+  </div>
+</section>
+  <!-- Quiz Section -->
+  <section id="quiz">
+    <div class="quiz-section">
+      <h2>Gopher Quiz</h2>
+      <div class="quiz-question" id="question"></div>
+      <div class="quiz-options" id="options"></div>
+      <button class="quiz-button" onclick="nextQuestion()">Submit Answer</button>
+      <div class="quiz-result" id="quiz-result"></div>
+    </div>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2025 Gopher Fun Zone. All rights reserved.</p>
+  </footer>
+
+  <script>
+       let score = 0;
+    let timeLeft = 30;
+    let gameInterval;
+
+    function startGame() {
+      score = 0;
+      timeLeft = 30;
+      document.getElementById('score').textContent = score;
+      document.getElementById('time').textContent = timeLeft;
+      gameInterval = setInterval(gameLoop, 1000);
+    }
+
+    function gameLoop() {
+      timeLeft--;
+      document.getElementById('time').textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        clearInterval(gameInterval);
+        alert('Game Over! Your score: ' + score);
+      } else {
+        showRandomGopher();
+      }
+    }
+
+    function showRandomGopher() {
+      const holes = document.querySelectorAll('.hole');
+      const gopher = document.querySelector('.gopher');
+      const randomHole = holes[Math.floor(Math.random() * holes.length)];
+      randomHole.appendChild(gopher);
+      gopher.style.display = 'block';
+
+      setTimeout(() => {
+        gopher.style.display = 'none';
+      }, 1000);
+    }
+
+    document.querySelectorAll('.gopher').forEach(gopher => {
+      gopher.addEventListener('click', () => {
+        score++;
+        document.getElementById('score').textContent = score;
+      });
+    });
+    // Quiz
+    const questions = [
+      {
+        question: "What do gophers primarily eat?",
+        options: ["Plants and roots", "Insects", "Other rodents", "Birds"],
+        answer: 0
+      },
+      {
+        question: "How long can a gopher tunnel system be?",
+        options: ["Up to 50 feet", "Up to 100 feet", "Up to 200 feet", "Up to 500 feet"],
+        answer: 2
+      },
+      {
+        question: "What do gophers use to dig?",
+        options: ["Claws and teeth", "Claws only", "Teeth only", "Spade-like paws"],
+        answer: 0
+      },
+      {
+        question: "What special feature do gophers have to store food?",
+        options: ["Cheek pouches", "Mouth pouches", "Nostrils", "Belly pouch"],
+        answer: 0
+      }
+    ];
+    let currentQuestionIndex = 0;
+
+    function displayQuestion() {
+      const questionElement = document.getElementById("question");
+      const optionsElement = document.getElementById("options");
+      const question = questions[currentQuestionIndex];
+      
+      questionElement.textContent = question.question;
+      optionsElement.innerHTML = "";
+      
+      question.options.forEach((option, index) => {
+        optionsElement.innerHTML += `
+          <input type="radio" name="option" value="${index}" id="option${index}">
+          <label for="option${index}">${option}</label><br>
+        `;
+      });
+    }
+
+    function nextQuestion() {
+      const selectedOption = document.querySelector('input[name="option"]:checked');
+      const quizResultElement = document.getElementById("quiz-result");
+
+      if (selectedOption) {
+        const selectedAnswer = parseInt(selectedOption.value);
+        if (selectedAnswer === questions[currentQuestionIndex].answer) {
+          quizResultElement.textContent = "Correct!";
+        } else {
+          quizResultElement.textContent = "Incorrect!";
+        }
+        
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+          setTimeout(() => {
+            displayQuestion();
+            quizResultElement.textContent = "";
+          }, 1000);
+        } else {
+          quizResultElement.textContent += " You've completed the quiz!";
+        }
+      } else {
+        alert("Please select an answer.");
+      }
+    }
+
+    displayQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <title>დივების ანიმაცია</title>
+  <style>
+    /* მშობელი div */
+    .parent {
+      width: 400px;              /* მშობლის სიგანე */
+      height: 400px;             /* მშობლის სიმაღლე */
+      background-color: blue;    /* ფონი (კონტრასტული ფერი) */
+      position: relative;        /* საჭირო child-ის პოზიციონირებისთვის */
+      margin: 50px auto;         /* ცენტრში გაჩენა */
+      border-radius: 50%;        /* რომ უკეთ გამოჩნდეს წრიული მოძრაობა */
+    }
+
+    /* შვილი div */
+    .child {
+      width: 200px;               /* ორჯერ პატარა მშობელთან შედარებით */
+      height: 200px;
+      background-color: red;      /* კონტრასტული ფერი */
+      position: absolute;         /* მშობლის შიგნით თავისუფლად მოძრაობისთვის */
+      top: 50%;                   /* ცენტრში დასაწყებად */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      /* ანიმაციის აღწერა */
+      animation-name: rotateAround;     /* ვუთითებთ keyframes სახელს */
+      animation-duration: 4s;           /* თითოეული ციკლის ხანგრძლივობა */
+      animation-delay: 3s;              /* დაიწყოს გვერდის ჩატვირთვიდან 3 წამში */
+      animation-iteration-count: infinite; /* უსასრულოდ განმეორება */
+      animation-timing-function: linear;   /* თანაბარი სიჩქარით მოძრაობა */
+    }
+
+    /* Keyframes - აღწერს ანიმაციის ეტაპებს */
+    @keyframes rotateAround {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(150px);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(150px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child"></div>
+  </div>
+</body>
+</html>

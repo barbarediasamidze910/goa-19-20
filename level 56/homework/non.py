@@ -1,1 +1,0 @@
-#kahooti gvkonda da davaleba iyo chanaweris yureba

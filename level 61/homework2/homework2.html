@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Layout 9 Blocks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="item item1">1</div>
+        <div class="item item2">2</div>
+        <div class="item item3">3</div>
+        <div class="item item4">4</div>
+        <div class="item item5">5</div>
+        <div class="item item6">6</div>
+        <div class="item item7">7</div>
+        <div class="item item8">8</div>
+        <div class="item item9">9</div>
+    </div>
+</body>
+
+</html>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
+    body {
+        background: #1f1f1f;
+        padding: 20px;
+    }
+
+    .container {
+        display: grid;
+        gap: 15px;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "hero hero side1 side1"
+            "hero hero side2 side2"
+            "mid mid mid mid"
+            "b1 b2 b3 b4"
+            "b5 b5 b5 b5";
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        padding: 20px;
+    }
+
+    /* Layout placement */
+    .item1 {
+        grid-area: hero;
+        background: linear-gradient(135deg, #ff6fd8, #ff8e53);
+    }
+
+    .item2 {
+        grid-area: mid;
+        background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+    }
+
+    .item3 {
+        grid-area: side1;
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+    }
+
+    .item4 {
+        grid-area: side2;
+        background: linear-gradient(135deg, #56ccf2, #2f80ed);
+    }
+
+    .item5 {
+        grid-area: b1;
+        background: linear-gradient(135deg, #f6d365, #fda085);
+    }
+
+    .item6 {
+        grid-area: b2;
+        background: linear-gradient(135deg, #f6d365, #fda085);
+    }
+
+    .item7 {
+        grid-area: b3;
+        background: linear-gradient(135deg, #f6d365, #fda085);
+    }
+
+    .item8 {
+        grid-area: b4;
+        background: linear-gradient(135deg, #f6d365, #fda085);
+    }
+
+    .item9 {
+        grid-area: b5;
+        background: linear-gradient(135deg, #f6d365, #fda085);
+    }
+</style>

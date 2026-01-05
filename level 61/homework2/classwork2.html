@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive მაგალითი</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>ეს არის სათაური</h1>
+    <p>ეს არის პარაგრაფი, რომელიც იცვლის ფერს ეკრანის ზომის მიხედვით.</p>
+</body>
+
+</html>
+<style>
+    /* 
+Responsive ნიშნავს რომ გვერდი ერგება სხვადასხვა ეკრანის ზომას 
+(ტელეფონი, პლანშეტი, კომპიუტერი).
+*/
+
+    h1 {
+        color: red;
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    /* 
+@media ამოწმებს ეკრანის სიგანეს.
+თუ ეკრანი არის 500px-დან 800px-მდე ფერი ხდება ლურჯი.
+*/
+    @media (min-width: 500px) and (max-width: 800px) {
+        h1 {
+            color: blue;
+        }
+    }
+</style>

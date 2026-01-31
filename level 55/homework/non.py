@@ -1,1 +1,0 @@
-# sololearnis accounti davkarge
